@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Candace Barnette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      color: #1a1a1a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-item { position: relative; }
+
+    .nav-item > a {
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+    }
+
+    .nav-item > a:hover { color: #1a1a1a; }
+
+    .nav-item > a svg {
+      width: 10px;
+      height: 10px;
+      opacity: 0.4;
+      transition: transform 0.2s;
+    }
+
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 6px 0;
+      min-width: 175px;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .nav-item:hover .dropdown { display: block; }
+
+    .dropdown a {
+      display: block;
+      padding: 7px 16px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .dropdown a:hover { color: #1a1a1a; background: #f7f7f7; }
+    .dropdown hr { border: none; border-top: 1px solid #e8e8e8; margin: 5px 0; }
+
+    /* PAGE */
+    main {
+      flex: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 5rem;
+      width: 100%;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      font-size: 14px;
+      color: #999;
+      font-weight: 300;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1.25rem;
+      padding: 10px 20px;
+      border: 1px solid #1a1a1a;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #1a1a1a;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .download-btn:hover { background: #1a1a1a; color: #fff; }
+
+    /* RESUME SECTIONS */
+    .resume-section { margin-bottom: 2.5rem; }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    /* SUMMARY */
+    .summary p {
+      font-size: 14px;
+      font-weight: 300;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    /* COMPETENCIES */
+    .competencies-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .competency-tag {
+      font-size: 11px;
+      color: #555;
+      background: #f4f4f4;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    /* EXPERIENCE */
+    .job { margin-bottom: 2rem; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .job-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+
+    .job-date {
+      font-size: 12px;
+      color: #aaa;
+      font-weight: 300;
+      white-space: nowrap;
+    }
+
+    .job-company {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 0.75rem;
+    }
+
+    .job ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .job ul li {
+      font-size: 13px;
+      font-weight: 300;
+      color: #444;
+      line-height: 1.7;
+      padding-left: 1.1rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+
+    .job ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #ccc;
+      font-size: 11px;
+      top: 2px;
+    }
+
+    .job-note {
+      font-size: 12px;
+      color: #aaa;
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    /* EDUCATION & CERTS */
+    .edu-item, .cert-item {
+      margin-bottom: 1rem;
+    }
+
+    .edu-item:last-child, .cert-item:last-child { margin-bottom: 0; }
+
+    .edu-degree {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-detail, .cert-detail {
+      font-size: 12px;
+      color: #888;
+      font-weight: 300;
+    }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+
+    .footer-links a { font-size: 11px; color: #aaa; }
+    .footer-links a:hover { color: #666; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1.25rem; }
+      main { padding: 2.5rem 1.25rem; }
+      footer { padding: 1.25rem; }
+      .job-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Candace Barnette</a>
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a href="#">
+          Work
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/work/case-studies.html">Case studies</a>
+          <a href="/work/articles.html">Articles</a>
+          <a href="/work/newsletters.html">Newsletters</a>
+          <a href="/work/blogs.html">Blogs</a>
+          <hr />
+          <a href="/work/brand-video.html">Brand video</a>
+          <a href="/work/digital-programming.html">Digital programming</a>
+          <a href="/work/news-packages.html">News packages</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          About
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/about/bio.html">Bio</a>
+          <a href="/about/resume.html">Resume</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <div class="page-header">
+      <h1>Resume</h1>
+      <p>Content strategist with 12+ years across B2B SaaS and broadcast media.</p>
+      <a class="download-btn" href="/assets/candace-barnette-resume.pdf" download>
+        ↓ &nbsp;Download PDF
+      </a>
+    </div>
+
+    <!-- SUMMARY -->
+    <section class="resume-section summary">
+      <p class="section-label">Summary</p>
+      <p>Content marketing professional with 12+ years of experience creating high-impact content across B2B SaaS and broadcast media. Proven track record building content programs from the ground up, growing blog and newsletter audiences at scale, and driving measurable engagement across multi-brand portfolios. Skilled at integrating AI tools into production workflows, leading editorial teams, and translating complex topics into compelling stories for diverse audiences.</p>
+    </section>
+
+    <!-- COMPETENCIES -->
+    <section class="resume-section">
+      <p class="section-label">Core competencies</p>
+      <div class="competencies-grid">
+        <span class="competency-tag">Content strategy</span>
+        <span class="competency-tag">Blog writing &amp; SEO</span>
+        <span class="competency-tag">Email &amp; newsletter marketing</span>
+        <span class="competency-tag">Case studies &amp; customer stories</span>
+        <span class="competency-tag">Webinar production</span>
+        <span class="competency-tag">Editorial management</span>
+        <span class="competency-tag">Team leadership</span>
+        <span class="competency-tag">Multi-brand content</span>
+        <span class="competency-tag">AI-assisted workflows</span>
+        <span class="competency-tag">AP Style</span>
+        <span class="competency-tag">Adobe Creative Suite</span>
+        <span class="competency-tag">Figma</span>
+        <span class="competency-tag">Google Workspace</span>
+        <span class="competency-tag">HubSpot</span>
+        <span class="competency-tag">ClickUp</span>
+        <span class="competency-tag">Airtable</span>
+        <span class="competency-tag">Sequel.io</span>
+        <span class="competency-tag">Claude</span>
+        <span class="competency-tag">ChatGPT</span>
+        <span class="competency-tag">Gemini</span>
+        <span class="competency-tag">Cross-functional collaboration</span>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="resume-section">
+      <p class="section-label">Experience</p>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Content Marketing Manager</span>
+          <span class="job-date">Jun 2025 – Present</span>
+        </div>
+        <p class="job-company">Auctane &nbsp;·&nbsp; Austin, TX</p>
+        <ul>
+          <li>Produced 100+ pieces of content across six brands (ShipStation, ShipStation API, Stamps.com, Metapack, GlobalPost, and Packlink) in under 12 months.</li>
+          <li>Built a customer story program from the ground up, publishing 45 stories across four brands — including written case studies and video productions — growing monthly story views 32x and sustaining a pace of one story per week for ShipStation.</li>
+          <li>Grew Stamps.com blog to 54,000+ monthly views (280% increase from Jun 2025) and grew ShipStation blog 151% over the same period through SEO-driven content strategy.</li>
+          <li>Managed 10+ monthly newsletter variants across four brands serving US, UK, CA and ANZ audiences; lists reached up to 308,000 recipients with standout sends achieving 18.16% CTR.</li>
+          <li>Integrated AI tools into core content workflows, reclaiming ~50 hours of production time per month and enabling higher content volume without added headcount.</li>
+          <li>Launched new content formats including the "Ask the Experts" webinar series for Stamps.com and interactive blog quizzes — firsts across the Auctane portfolio.</li>
+          <li>Optimized high-traffic blog content for LLM/AI search discoverability.</li>
+          <li>Partnered cross-functionally with Customer Success, Product Marketing, SEO, PR and lifecycle teams to align content with pipeline needs across 5+ brands.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Managing Editor of Digital Content</span>
+          <span class="job-date">Feb 2025 – May 2025</span>
+        </div>
+        <p class="job-company">Strategic Partnerships, Inc. &nbsp;·&nbsp; Austin, TX</p>
+        <ul>
+          <li>Led a team of writers producing content for Government Market News, a digital publication covering public-private partnerships and government contracts.</li>
+          <li>Oversaw end-to-end production of two weekly newsletters — Government Connection Pipeline (11,000+ subscribers) and Texas Government Insider (6,000+ subscribers) — managing content selection, editing and distribution.</li>
+          <li>Selected and copy edited 40+ weekly articles on tight deadlines, ensuring audience relevance and editorial consistency; managed editorial calendar for strategic coverage.</li>
+          <li>Analyzed website performance metrics to inform content strategy and maximize audience engagement.</li>
+          <li>Edited The Government Connection podcast, overseeing both audio production and video content.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Executive Producer of News</span>
+          <span class="job-date">Jul 2021 – May 2024</span>
+        </div>
+        <p class="job-company">Atmosphere &nbsp;·&nbsp; Austin, TX</p>
+        <p class="job-note">Promoted through three roles: Senior Editor → Senior Supervising News Editor → Executive Producer of News</p>
+        <ul>
+          <li>Led strategic content direction for multiple news channels distributed to 30,000+ venues worldwide, maintaining consistent brand voice across high-volume daily production.</li>
+          <li>Managed a team of producers and editors across live channels, overseeing writing, editorial approval and channel growth strategy; led daily editorial meetings.</li>
+          <li>Curated and produced daily content under tight deadlines, leveraging content management systems to optimize multi-channel publishing workflows.</li>
+          <li>Collaborated cross-functionally with design, product and leadership teams to improve channel formats, expand content offerings and drive audience engagement.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Evening News Anchor, Producer &amp; Reporter</span>
+          <span class="job-date">Mar 2019 – Mar 2021</span>
+        </div>
+        <p class="job-company">KLAF-TV (NBC) / KADN-TV (FOX) &nbsp;·&nbsp; Lafayette, LA</p>
+        <ul>
+          <li>Anchored four daily live newscasts and owned end-to-end content development: shooting, scripting, editing and publishing news segments.</li>
+          <li>Produced newscasts as needed, distilling complex stories across politics, crime and weather into concise, audience-appropriate content.</li>
+          <li>Maintained professional source relationships to ensure timely, accurate coverage of breaking regional news.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Evening News Anchor, Producer &amp; Reporter</span>
+          <span class="job-date">Dec 2012 – Mar 2019</span>
+        </div>
+        <p class="job-company">WTOK-TV &nbsp;·&nbsp; Meridian, MS</p>
+        <p class="job-note">Promoted through three roles: Reporter → Weekend Anchor → Evening News Anchor</p>
+        <ul>
+          <li>Anchored live newscasts and produced 10 p.m. broadcasts under tight daily deadlines, with emphasis on editorial quality, grammar and story flow.</li>
+          <li>Reported and anchored live from major breaking news events across Mississippi and Alabama, covering elections, natural disasters and high-profile investigations.</li>
+          <li>Created and grew a news-focused social media presence to thousands of followers, developing early expertise in audience development and digital community engagement.</li>
+          <li>Mentored junior reporters and producers in writing, editing and storytelling best practices.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="resume-section">
+      <p class="section-label">Education</p>
+      <div class="edu-item">
+        <p class="edu-degree">Bachelor of Arts, Communication</p>
+        <p class="edu-detail">Mississippi State University, 2013 &nbsp;·&nbsp; Shackouls Honors College &nbsp;·&nbsp; Student Broadcasting Association &nbsp;·&nbsp; The Reflector</p>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="resume-section">
+      <p class="section-label">Certifications</p>
+      <div class="cert-item">
+        <p class="edu-degree">Content Marketing Certification</p>
+        <p class="cert-detail">HubSpot Academy &nbsp;·&nbsp; Issued Dec 2025, Exp. Dec 2027</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span class="footer-name">Candace Barnette</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/candacebarnette" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:candacebarnette@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
