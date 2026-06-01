@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles — Candace Barnette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      color: #1a1a1a;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-item { position: relative; }
+
+    .nav-item > a {
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+    }
+
+    .nav-item > a:hover { color: #1a1a1a; }
+
+    .nav-item > a svg {
+      width: 10px;
+      height: 10px;
+      opacity: 0.4;
+      transition: transform 0.2s;
+    }
+
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      padding-top: 10px;
+      right: 0;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 0 0 6px;
+      min-width: 175px;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .nav-item:hover .dropdown { display: block; }
+
+    .dropdown a {
+      display: block;
+      padding: 7px 16px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .dropdown a:hover { color: #1a1a1a; background: #f7f7f7; }
+    .dropdown hr { border: none; border-top: 1px solid #e8e8e8; margin: 5px 0; }
+
+    /* PAGE */
+    main {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 5rem;
+      width: 100%;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      font-size: 14px;
+      color: #999;
+      font-weight: 300;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* GRID */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* CARD */
+    .card {
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: #bbb; }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      background: #f4f4f4;
+    }
+
+    .card-body {
+      padding: 1rem 1.1rem 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .tag-gmn { background: #e8eef5; color: #1a3a5c; }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: #666;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    .card-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: #1a1a1a;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-link:hover { opacity: 0.6; }
+
+    @media (max-width: 860px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      nav { padding: 1.25rem; }
+      main { padding: 2.5rem 1.25rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      footer { padding: 1.25rem; }
+    }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; color: #aaa; }
+    .footer-links a:hover { color: #666; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Candace Barnette</a>
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a href="#">
+          Work
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/work/case-studies.html">Case studies</a>
+          <a href="/work/blogs.html">Blogs</a>
+          <a href="/work/newsletters.html">Newsletters</a>
+          <a href="/work/articles.html">Articles</a>
+          <hr />
+          <a href="/work/brand-video.html">Brand video</a>
+          <a href="/work/digital-programming.html">Digital programming</a>
+          <a href="/work/news-packages.html">News packages</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          About
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/about/bio.html">Bio</a>
+          <a href="/about/resume.html">Resume</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Articles</h1>
+      <p>News articles written for Government Market News, a publication of Strategic Partnerships, Inc. covering federal policy, infrastructure investment, and the government contracting marketplace.</p>
+    </div>
+
+    <div class="card-grid">
+
+      <a class="card" href="https://govmarketnews.com/north-carolina-first-in-opportunity-plan/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/05/pexels-andres-nino-760836985-18802845-scaled.jpg" alt="North Carolina statewide development plan" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">New priorities, projects highlight North Carolina's statewide development plan</p>
+          <p class="card-desc">NC's economic blueprint sets priorities through 2030 across infrastructure, housing, workforce, and emerging tech — with $200B in investment needs on the horizon.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/texas-swift-program-address-record-demand-for-water-funding/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/05/pexels-steve-861414-1-scaled.jpg" alt="Texas water funding" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">Unprecedented demand for water funding outpaces Texas' flagship program for first time</p>
+          <p class="card-desc">$4.2B in requests, $1.28B available — and for the first time in 11 years, Texas' flagship water finance fund had to turn applicants away.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/massdot-service-plaza-procurement-p3-rebid/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/03/1280px-Route_28_in_Somerville_April_2025_2.jpg" alt="Massachusetts highway service plazas" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">MassDOT launches new bidding process for highway service plazas</p>
+          <p class="card-desc">After a failed procurement and a $1B legal dispute, MassDOT restructures its approach to redeveloping 18 service plazas across the state.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/white-house-us-cybersecurity-strategy-2026/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/03/white-house-cyber-security-strategy-scaled.jpg" alt="White House cybersecurity strategy" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">White House outlines cybersecurity priorities for government and industry</p>
+          <p class="card-desc">A six-pillar strategy to modernize federal networks, confront foreign threats, and build a pipeline of cybersecurity talent across government and the private sector.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/epa-rescinds-2009-endangerment-finding-clean-air-act-regulation/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/02/pexels-pixabay-210182-scaled.jpg" alt="EPA greenhouse gas ruling" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">White House, EPA finalize repeal of greenhouse gas endangerment finding</p>
+          <p class="card-desc">The EPA's 2009 finding — the legal foundation for federal greenhouse gas regulation for 15+ years — is repealed in what officials call the agency's largest-ever deregulatory action.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/smart-traffic-technology-gains-momentum-in-u-s-cities/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/09/us-cities-smart-traffic-technology-scaled.jpg" alt="Smart traffic technology in U.S. cities" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">Smart traffic technology gains momentum in U.S. cities</p>
+          <p class="card-desc">Cities from San Jose to Las Vegas are deploying AI-powered traffic systems to cut pedestrian deaths — but costs, privacy concerns, and equity questions are shaping how fast the technology spreads.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/fema-launches-250m-grant-program-for-drone-security/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/01/counter-unmanned-drone-grant-program-scaled.jpg" alt="FEMA drone security grants" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">FEMA launches $250M grant program for drone security</p>
+          <p class="card-desc">Eleven states receive counter-drone funding ahead of the FIFA World Cup — distributed in 25 days, making it FEMA's fastest-ever non-disaster grant program.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/genesis-mission-320m-ai-funding/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/12/doe-genesis-mission-ai-supercomputing.jpg" alt="DOE AI Genesis Mission" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">DOE invests $320M for AI scientific research</p>
+          <p class="card-desc">The DOE's Genesis Mission channels $320M into AI-powered national labs, a new American Science Cloud, and robotics — with a goal of doubling U.S. scientific output in a decade.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/white-house-order-boosts-commercial-space-moon-goals/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/12/pexels-pixabay-2166-scaled.jpg" alt="White House commercial space order" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">White House order boosts commercial space, moon goals</p>
+          <p class="card-desc">A sweeping executive order sets a 2028 moon return target, $50B in new commercial space investment, and plans for lunar nuclear reactors by 2030.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/doe-rare-earth-funding-opportunity/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/12/pexels-pixabay-461789-scaled.jpg" alt="DOE rare earth funding" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">DOE opens funding opportunity to expand domestic rare earth supply chain</p>
+          <p class="card-desc">Federal investment targets rare earth element extraction and processing, part of a broader push to reduce U.S. dependence on foreign sources for critical materials.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/dod-plans-massive-cloud-contract-expansion-in-2027/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/08/dod-pentagon-cloud-infrastructure.jpg" alt="DoD cloud contract expansion" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">DoD plans massive cloud contract expansion in 2027</p>
+          <p class="card-desc">The Pentagon is preparing a significant expansion of its cloud computing procurement, signaling major new contracting opportunities for technology vendors in 2027.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://govmarketnews.com/white-house-establishes-plan-leadership-for-proposed-nationwide-missile-defense-system/" target="_blank" rel="noopener">
+        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/07/earth-at-night-america.jpg" alt="Nationwide missile defense system" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
+          <p class="card-title">White House establishes plan, leadership for proposed nationwide missile defense system</p>
+          <p class="card-desc">The administration moves forward on its Iron Dome–style missile defense proposal, naming leadership and outlining a planning structure for a system designed to protect the entire continental U.S.</p>
+          <span class="card-link">Read article →</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-name">Candace Barnette</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/candacebarnette" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:candacebarnette@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
