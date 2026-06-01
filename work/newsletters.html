@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletters — Candace Barnette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      color: #1a1a1a;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-item { position: relative; }
+
+    .nav-item > a {
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+    }
+
+    .nav-item > a:hover { color: #1a1a1a; }
+
+    .nav-item > a svg {
+      width: 10px;
+      height: 10px;
+      opacity: 0.4;
+      transition: transform 0.2s;
+    }
+
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      padding-top: 10px;
+      right: 0;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 0 0 6px;
+      min-width: 175px;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .nav-item:hover .dropdown { display: block; }
+
+    .dropdown a {
+      display: block;
+      padding: 7px 16px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .dropdown a:hover { color: #1a1a1a; background: #f7f7f7; }
+    .dropdown hr { border: none; border-top: 1px solid #e8e8e8; margin: 5px 0; }
+
+    /* PAGE */
+    main {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 5rem;
+      width: 100%;
+    }
+
+    .page-header { margin-bottom: 3rem; }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      font-size: 14px;
+      color: #999;
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    /* GRID */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* CARD */
+    .card {
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: #bbb; }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      background: #f4f4f4;
+    }
+
+    .card-body {
+      padding: 1rem 1.1rem 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .tag-shipstation { background: #e6f0fb; color: #185fa5; }
+    .tag-stamps { background: #e6f5ee; color: #0f6e56; }
+    .tag-metapack { background: #f0eafe; color: #534ab7; }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: #666;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    .card-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: #1a1a1a;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-link:hover { opacity: 0.6; }
+
+    @media (max-width: 860px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      nav { padding: 1.25rem; }
+      main { padding: 2.5rem 1.25rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      footer { padding: 1.25rem; }
+    }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; color: #aaa; }
+    .footer-links a:hover { color: #666; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Candace Barnette</a>
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a href="#">
+          Work
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/work/case-studies.html">Case studies</a>
+          <a href="/work/blogs.html">Blogs</a>
+          <a href="/work/newsletters.html">Newsletters</a>
+          <a href="/work/articles.html">Articles</a>
+          <hr />
+          <a href="/work/brand-video.html">Brand video</a>
+          <a href="/work/digital-programming.html">Digital programming</a>
+          <a href="/work/news-packages.html">News packages</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          About
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/about/bio.html">Bio</a>
+          <a href="/about/resume.html">Resume</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Newsletters</h1>
+      <p>Monthly newsletters written and managed for ShipStation, Stamps.com, and Metapack — covering product updates, industry news, and customer stories.</p>
+    </div>
+
+    <div class="card-grid">
+
+      <!-- ShipStation -->
+      <a class="card" href="/assets/newsletter-ss-innovation-delivered.png" target="_blank" rel="noopener">
+        <img class="card-image" src="/assets/newsletter-ss-innovation-delivered.png" alt="ShipStation Innovation Delivered newsletter" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+          <p class="card-title">Innovation Delivered</p>
+          <p class="card-desc">Virtual summit preview covering AI-powered shipping, automation playbooks, and expert-led sessions for ecommerce operators.</p>
+          <span class="card-link">View newsletter →</span>
+        </div>
+      </a>
+
+      <a class="card" href="/assets/newsletter-ss-feb-2026.png" target="_blank" rel="noopener">
+        <img class="card-image" src="/assets/newsletter-ss-feb-2026.png" alt="ShipStation February 2026 newsletter" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+          <p class="card-title">Your February shipping toolkit just got an upgrade</p>
+          <p class="card-desc">Product updates covering Shopify catalog imports, EU shipping rules, and seller stories from Spiceology and Stickers4Walls.</p>
+          <span class="card-link">View newsletter →</span>
+        </div>
+      </a>
+
+      <a class="card" href="/assets/newsletter-ss-mar-2026.png" target="_blank" rel="noopener">
+        <img class="card-image" src="/assets/newsletter-ss-mar-2026.png" alt="ShipStation March 2026 newsletter" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+          <p class="card-title">An exclusive first look at our 2026 roadmap</p>
+          <p class="card-desc">Behind-the-scenes Q2 product roadmap with CPO Kelly Vincent, the 2026 Ecommerce Delivery Benchmark Report, and stories from Selkirk and SalesFlex.</p>
+          <span class="card-link">View newsletter →</span>
+        </div>
+      </a>
+
+      <a class="card" href="/assets/newsletter-ss-apr-2026.png" target="_blank" rel="noopener">
+        <img class="card-image" src="/assets/newsletter-ss-apr-2026.png" alt="ShipStation April 2026 newsletter" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+          <p class="card-title">USPS rates are changing—here's how to save</p>
+          <p class="card-desc">Rate change breakdown, UPS Ground Saver launch, ShipStation Supplies Store, and a featured story from Xena Workwear.</p>
+          <span class="card-link">View newsletter →</span>
+        </div>
+      </a>
+
+      <!-- Metapack -->
+      <a class="card" href="/assets/newsletter-mp-tdc-2026.png" target="_blank" rel="noopener">
+        <img class="card-image" src="/assets/newsletter-mp-tdc-2026.png" alt="Metapack TDC 2026 newsletter" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-metapack">Metapack</span></div>
+          <p class="card-title">The Delivery Conference 2026</p>
+          <p class="card-desc">Conference announcement covering the Intelligent Delivery Shift, Metapack Customer Day, new carrier and platform features, and partner spotlights.</p>
+          <span class="card-link">View newsletter →</span>
+        </div>
+      </a>
+
+      <a class="card" href="/assets/newsletter-mp-feb-2026.png" target="_blank" rel="noopener">
+        <img class="card-image" src="/assets/newsletter-mp-feb-2026.png" alt="Metapack February 2026 newsletter" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-metapack">Metapack</span></div>
+          <p class="card-title">February's here—and we've got updates worth your attention</p>
+          <p class="card-desc">Intelligence Hub updates including Ask AI and predictive delivery tools, a TDC 2026 recap, new carrier additions Parxl and Zippd, and EU regulatory updates.</p>
+          <span class="card-link">View newsletter →</span>
+        </div>
+      </a>
+
+      <!-- Stamps -->
+      <a class="card" href="/assets/newsletter-stamps-jan-2026.png" target="_blank" rel="noopener">
+        <img class="card-image" src="/assets/newsletter-stamps-jan-2026.png" alt="Stamps.com January 2026 newsletter" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-stamps">Stamps.com</span></div>
+          <p class="card-title">Save on mailing and shipping in 2026</p>
+          <p class="card-desc">New year kickoff covering expanded carrier access with FedEx, USPS rate changes, a ScanMyPhotos customer feature, and office mailing efficiency tips.</p>
+          <span class="card-link">View newsletter →</span>
+        </div>
+      </a>
+
+      <a class="card" href="/assets/newsletter-stamps-feb-2026.png" target="_blank" rel="noopener">
+        <img class="card-image" src="/assets/newsletter-stamps-feb-2026.png" alt="Stamps.com February 2026 newsletter" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-stamps">Stamps.com</span></div>
+          <p class="card-title">Is your business working for you? Take the quiz.</p>
+          <p class="card-desc">10-question business efficiency quiz, a label printer buying guide, expense tracking tips, and attorney James Rose's story of reclaiming 15 hours a month.</p>
+          <span class="card-link">View newsletter →</span>
+        </div>
+      </a>
+
+      <a class="card" href="/assets/newsletter-stamps-apr-2026.png" target="_blank" rel="noopener">
+        <img class="card-image" src="/assets/newsletter-stamps-apr-2026.png" alt="Stamps.com April 2026 newsletter" />
+        <div class="card-body">
+          <div class="card-tags"><span class="tag tag-stamps">Stamps.com</span></div>
+          <p class="card-title">USPS rates are changing—here's how to save</p>
+          <p class="card-desc">April rate change breakdown, critical mail workflow guide, legal professional Q&A, and Foresight Tax Services — a customer that's been with Stamps.com for 23 seasons.</p>
+          <span class="card-link">View newsletter →</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-name">Candace Barnette</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/candacebarnette" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:candacebarnette@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
