@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bio — Candace Barnette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      color: #1a1a1a;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-item { position: relative; }
+
+    .nav-item > a {
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+    }
+
+    .nav-item > a:hover { color: #1a1a1a; }
+
+    .nav-item > a svg {
+      width: 10px;
+      height: 10px;
+      opacity: 0.4;
+      transition: transform 0.2s;
+    }
+
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 6px 0;
+      min-width: 175px;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .nav-item:hover .dropdown { display: block; }
+
+    .dropdown a {
+      display: block;
+      padding: 7px 16px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .dropdown a:hover { color: #1a1a1a; background: #f7f7f7; }
+    .dropdown hr { border: none; border-top: 1px solid #e8e8e8; margin: 5px 0; }
+
+    /* PAGE */
+    main {
+      flex: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 5rem;
+      width: 100%;
+    }
+
+    /* BIO LAYOUT */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    /* PHOTOS */
+    .bio-photos { display: flex; flex-direction: column; gap: 1rem; }
+
+    .bio-photo,
+    .bio-photo-secondary {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .photo-caption {
+      font-size: 11px;
+      color: #bbb;
+      margin-top: -0.5rem;
+      font-style: italic;
+    }
+
+    /* BIO TEXT */
+    .bio-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 0.4rem;
+      line-height: 1.15;
+    }
+
+    .bio-subtitle {
+      font-size: 13px;
+      color: #aaa;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .bio-content p {
+      font-size: 15px;
+      font-weight: 300;
+      color: #444;
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+
+    .bio-content p:last-of-type { margin-bottom: 0; }
+
+    .bio-content a {
+      color: #1a1a1a;
+      border-bottom: 1px solid #e8e8e8;
+      transition: border-color 0.15s;
+    }
+
+    .bio-content a:hover { border-color: #1a1a1a; }
+
+    /* RESUME LINK */
+    .resume-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2rem;
+      padding: 10px 20px;
+      border: 1px solid #1a1a1a;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #1a1a1a;
+      transition: background 0.15s, color 0.15s;
+      text-decoration: none;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .resume-link:hover { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; color: #aaa; }
+    .footer-links a:hover { color: #666; }
+
+    @media (max-width: 640px) {
+      nav { padding: 1.25rem; }
+      main { padding: 2.5rem 1.25rem; }
+      .bio-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-photo { max-width: 180px; aspect-ratio: 1 / 1; }
+      footer { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Candace Barnette</a>
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a href="#">
+          Work
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/work/case-studies.html">Case studies</a>
+          <a href="/work/articles.html">Articles</a>
+          <a href="/work/newsletters.html">Newsletters</a>
+          <a href="/work/blogs.html">Blogs</a>
+          <hr />
+          <a href="/work/brand-video.html">Brand video</a>
+          <a href="/work/digital-programming.html">Digital programming</a>
+          <a href="/work/news-packages.html">News packages</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          About
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/about/bio.html">Bio</a>
+          <a href="/about/resume.html">Resume</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="bio-grid">
+
+      <div class="bio-photos">
+        <img src="/assets/candace-headshot.jpg" alt="Candace Barnette" class="bio-photo" />
+        <img src="/assets/candace-reporting.jpg" alt="Candace reporting in the snow" class="bio-photo-secondary" />
+        <p class="photo-caption">Earlier life, reporting live in the snow.</p>
+        <img src="/assets/candace-minou.jpg" alt="Minou the cat" class="bio-photo-secondary" />
+        <p class="photo-caption">Minou. Unbothered.</p>
+        <img src="/assets/candace-kyle.jpg" alt="Candace and Kyle at an MSU football game" class="bio-photo-secondary" />
+        <p class="photo-caption">Mississippi State tailgate. Priorities in order.</p>
+      </div>
+
+      <div class="bio-content">
+        <h1>Candace Barnette</h1>
+        <p class="bio-subtitle">Content strategist &nbsp;·&nbsp; Austin, TX</p>
+
+        <p>I got into journalism because I love a good story. After nearly a decade reporting and anchoring news across Mississippi and Louisiana, I covered everything — politics, crime, weather, you name it — and learned how to find the angle fast and write clearly under pressure. My favorite work was a segment called On the Job, where I'd spend a day doing someone else's job: beekeeper, surgeon, pizza maker, florist. Whatever made the story interesting.</p>
+
+        <p>Those same instincts turned out to be exactly what content strategy requires. Over the past few years I've made the shift from broadcast to brand storytelling: building content programs, writing case studies, managing newsletters, and helping companies figure out what they want to say and how to say it well.</p>
+
+        <p>In an era when AI can produce content at scale, I've realized my superpower is judgment. Knowing what's good. Editing a blog post, a video script, or a newsletter until it's right is something you can only get from reps. I have a lot of them.</p>
+
+        <p>Mississippi-born, Austin-based. Outside of work I have an <a href="https://etsy.com/shop/bandacecreations" target="_blank" rel="noopener">Etsy shop for my stickers</a>, and I share my home with Minou (pictured). I love a good ren faire, paddleboarding on the river, tie-dyeing things that probably didn't need to be tie-dyed, and convincing myself I can handle whatever overly complicated home project I found online.</p>
+
+        <a href="/about/resume.html" class="resume-link">View my resume →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-name">Candace Barnette</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/candacebarnette" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:candacebarnette@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
