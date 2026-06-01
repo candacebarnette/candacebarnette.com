@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Video — Candace Barnette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      color: #1a1a1a;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-item { position: relative; }
+
+    .nav-item > a {
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+    }
+
+    .nav-item > a:hover { color: #1a1a1a; }
+
+    .nav-item > a svg {
+      width: 10px;
+      height: 10px;
+      opacity: 0.4;
+      transition: transform 0.2s;
+    }
+
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      padding-top: 10px;
+      right: 0;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 0 0 6px;
+      min-width: 175px;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .nav-item:hover .dropdown { display: block; }
+
+    .dropdown a {
+      display: block;
+      padding: 7px 16px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .dropdown a:hover { color: #1a1a1a; background: #f7f7f7; }
+    .dropdown hr { border: none; border-top: 1px solid #e8e8e8; margin: 5px 0; }
+
+    /* PAGE */
+    main {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 5rem;
+      width: 100%;
+    }
+
+    .page-header { margin-bottom: 3rem; }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-header p {
+      font-size: 14px;
+      font-weight: 300;
+      color: #888;
+      line-height: 1.6;
+      max-width: 580px;
+    }
+
+    /* SECTIONS */
+    .section { margin-bottom: 4rem; }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-header p {
+      font-size: 13px;
+      font-weight: 300;
+      color: #aaa;
+    }
+
+    /* CARD GRIDS */
+    .card-grid-landscape {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card-grid-portrait {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* CARDS */
+    .card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* LANDSCAPE IMAGE (YouTube) */
+    .card-image-wrap-landscape {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #111;
+      overflow: hidden;
+    }
+
+    .card-image-wrap-landscape img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .card:hover .card-image-wrap-landscape img { opacity: 0.75; }
+
+    /* PORTRAIT IMAGE (Instagram) */
+    .card-image-wrap-portrait {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #111;
+      overflow: hidden;
+    }
+
+    .card-image-wrap-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .card:hover .card-image-wrap-portrait img { opacity: 0.75; }
+
+    /* PLAY ICON */
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      pointer-events: none;
+    }
+
+    .play-icon svg { width: 100%; height: 100%; }
+
+    /* CARD BODY */
+    .card-body {
+      padding: 1rem 1.1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 0.55rem;
+    }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .tag-stamps { background: #fdecea; color: #b71c1c; }
+    .tag-shipstation { background: #e8f0fb; color: #1a3a7c; }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: #666;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    .card-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: #1a1a1a;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-link:hover { opacity: 0.6; }
+
+    @media (max-width: 860px) {
+      .card-grid-landscape,
+      .card-grid-portrait { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      nav { padding: 1.25rem; }
+      main { padding: 2.5rem 1.25rem; }
+      .card-grid-landscape,
+      .card-grid-portrait { grid-template-columns: 1fr; }
+      footer { padding: 1.25rem; }
+    }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; color: #aaa; }
+    .footer-links a:hover { color: #666; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Candace Barnette</a>
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a href="#">
+          Work
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/work/case-studies.html">Case studies</a>
+          <a href="/work/blogs.html">Blogs</a>
+          <a href="/work/newsletters.html">Newsletters</a>
+          <a href="/work/articles.html">Articles</a>
+          <hr />
+          <a href="/work/brand-video.html">Brand video</a>
+          <a href="/work/digital-programming.html">Digital programming</a>
+          <a href="/work/news-packages.html">News packages</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          About
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/about/bio.html">Bio</a>
+          <a href="/about/resume.html">Resume</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Brand video</h1>
+      <p>On-camera hosting and editing for Stamps.com, plus video case studies produced for ShipStation — scripted, directed, and editorially managed from interview to final cut.</p>
+    </div>
+
+    <!-- SECTION 1: STAMPS.COM -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Stamps.com</h2>
+        <p>Short-form video content for Instagram — hosted, scripted, and edited</p>
+      </div>
+      <div class="card-grid-portrait">
+
+        <a class="card" href="https://www.instagram.com/p/DNn0zf5h7Yo/" target="_blank" rel="noopener">
+          <div class="card-image-wrap-portrait">
+            <img src="/assets/stamps-coconut-thumb.png" alt="Did you know you can mail a coconut?" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-stamps">Stamps.com</span></div>
+            <p class="card-title">Did you know you can mail a coconut?</p>
+            <p class="card-desc">A fun fact about what the USPS will actually ship — straight from the host's mouth.</p>
+            <span class="card-link">Watch on Instagram →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.instagram.com/p/DOHVAMfDfTa/" target="_blank" rel="noopener">
+          <div class="card-image-wrap-portrait">
+            <img src="/assets/stamps-mailing-thumb.png" alt="Lunchtime errand run?" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-stamps">Stamps.com</span></div>
+            <p class="card-title">Lunchtime errand run?</p>
+            <p class="card-desc">Why a quick trip to the post office doesn't have to be part of your day anymore.</p>
+            <span class="card-link">Watch on Instagram →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.instagram.com/p/DOokTvylUdI/" target="_blank" rel="noopener">
+          <div class="card-image-wrap-portrait">
+            <img src="/assets/stamps-alaska-thumb.png" alt="Did you know the most expensive ZIP code?" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-stamps">Stamps.com</span></div>
+            <p class="card-title">Did you know the most expensive ZIP code?</p>
+            <p class="card-desc">The surprising answer to where your shipping costs the most — and what to do about it.</p>
+            <span class="card-link">Watch on Instagram →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- SECTION 2: SHIPSTATION STORIES -->
+    <div class="section">
+      <div class="section-header">
+        <h2>ShipStation Stories</h2>
+        <p>Video case studies — interviewed, scripted, and editorially directed for ShipStation</p>
+      </div>
+      <div class="card-grid-landscape">
+
+        <a class="card" href="https://www.youtube.com/watch?v=U7d_sIeLf7g" target="_blank" rel="noopener">
+          <div class="card-image-wrap-landscape">
+            <img src="https://i.ytimg.com/vi/U7d_sIeLf7g/maxresdefault.jpg" alt="Selkirk | ShipStation Stories" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">Selkirk | ShipStation Stories</p>
+            <p class="card-desc">How Selkirk scaled their pickleball brand on the back of a smarter shipping operation.</p>
+            <span class="card-link">Watch on YouTube →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=TSne8DAyYA4" target="_blank" rel="noopener">
+          <div class="card-image-wrap-landscape">
+            <img src="https://i.ytimg.com/vi/TSne8DAyYA4/maxresdefault.jpg" alt="Kyn You Believe It | ShipStation Stories" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">Kyn You Believe It | ShipStation Stories</p>
+            <p class="card-desc">A small business finding its footing — and how getting shipping right changed everything.</p>
+            <span class="card-link">Watch on YouTube →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=PeKtUkxBFqA" target="_blank" rel="noopener">
+          <div class="card-image-wrap-landscape">
+            <img src="https://i.ytimg.com/vi/PeKtUkxBFqA/maxresdefault.jpg" alt="Guardian Sports | ShipStation Stories" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">Guardian Sports | ShipStation Stories</p>
+            <p class="card-desc">Protective gear, high-volume orders, and the shipping infrastructure keeping up with demand.</p>
+            <span class="card-link">Watch on YouTube →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=n6v3kaCxk5U" target="_blank" rel="noopener">
+          <div class="card-image-wrap-landscape">
+            <img src="https://i.ytimg.com/vi/n6v3kaCxk5U/maxresdefault.jpg" alt="Spiceology | ShipStation Stories" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">Spiceology | ShipStation Stories</p>
+            <p class="card-desc">How a chef-founded spice company ships flavor — and keeps customers coming back for more.</p>
+            <span class="card-link">Watch on YouTube →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=VOUWREZ3MT8" target="_blank" rel="noopener">
+          <div class="card-image-wrap-landscape">
+            <img src="https://i.ytimg.com/vi/VOUWREZ3MT8/maxresdefault.jpg" alt="People's Choice Beef Jerky | ShipStation Stories" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">People's Choice Beef Jerky | ShipStation Stories</p>
+            <p class="card-desc">A family jerky business with a loyal following — and the logistics to match their ambitions.</p>
+            <span class="card-link">Watch on YouTube →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=usbUHwsnD_4" target="_blank" rel="noopener">
+          <div class="card-image-wrap-landscape">
+            <img src="https://i.ytimg.com/vi/usbUHwsnD_4/maxresdefault.jpg" alt="SalesFlex | ShipStation Stories" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">SalesFlex | ShipStation Stories</p>
+            <p class="card-desc">Streamlining fulfillment for a business built around flexibility — and a lot of moving parts.</p>
+            <span class="card-link">Watch on YouTube →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=JIFbJX_lG3c" target="_blank" rel="noopener">
+          <div class="card-image-wrap-landscape">
+            <img src="https://i.ytimg.com/vi/JIFbJX_lG3c/hqdefault.jpg" alt="Amanda Deer Jewelry | ShipStation Stories" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">Amanda Deer Jewelry | ShipStation Stories</p>
+            <p class="card-desc">A handmade jewelry brand shipping with care — and the tools making every order feel personal.</p>
+            <span class="card-link">Watch on YouTube →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=UznDsTTa8J0" target="_blank" rel="noopener">
+          <div class="card-image-wrap-landscape">
+            <img src="https://i.ytimg.com/vi/UznDsTTa8J0/maxresdefault.jpg" alt="Clean Green Golf Balls | ShipStation Stories" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">Clean Green Golf Balls | ShipStation Stories</p>
+            <p class="card-desc">Recycled golf balls, a sustainability mission, and the shipping operation behind a growing niche brand.</p>
+            <span class="card-link">Watch on YouTube →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span class="footer-name">Candace Barnette</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/candacebarnette" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:candacebarnette@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
