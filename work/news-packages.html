@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Packages — Candace Barnette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      color: #1a1a1a;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-item { position: relative; }
+
+    .nav-item > a {
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+    }
+
+    .nav-item > a:hover { color: #1a1a1a; }
+
+    .nav-item > a svg {
+      width: 10px;
+      height: 10px;
+      opacity: 0.4;
+      transition: transform 0.2s;
+    }
+
+    .nav-item:hover > a svg { transform: rotate(180deg); }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      padding-top: 10px;
+      right: 0;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 0 0 6px;
+      min-width: 175px;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .nav-item:hover .dropdown { display: block; }
+
+    .dropdown a {
+      display: block;
+      padding: 7px 16px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .dropdown a:hover { color: #1a1a1a; background: #f7f7f7; }
+    .dropdown hr { border: none; border-top: 1px solid #e8e8e8; margin: 5px 0; }
+
+    /* PAGE */
+    main {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 5rem;
+      width: 100%;
+    }
+
+    .page-header { margin-bottom: 3rem; }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      font-size: 14px;
+      color: #999;
+      font-weight: 300;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* FEATURED REEL */
+    .featured-reel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .reel-image-wrap {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #111;
+    }
+
+    .reel-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.85;
+    }
+
+    .reel-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reel-play svg {
+      width: 52px;
+      height: 52px;
+      opacity: 0.9;
+    }
+
+    .reel-image-wrap:hover img { opacity: 0.7; }
+    .reel-image-wrap:hover .reel-play svg { opacity: 1; }
+
+    .reel-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .reel-content p {
+      font-size: 14px;
+      font-weight: 300;
+      color: #666;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .reel-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a1a;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 2px;
+    }
+
+    .reel-link:hover { opacity: 0.5; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 4rem; }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .section-header h2 {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a1a;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .section-header p {
+      font-size: 12px;
+      color: #aaa;
+      font-weight: 300;
+      margin-top: 0.25rem;
+    }
+
+    /* GRID */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* CARD */
+    .card {
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: #bbb; }
+
+    .card-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #111;
+      overflow: hidden;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .card:hover .card-image { opacity: 0.75; }
+
+    .play-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .play-icon svg {
+      width: 36px;
+      height: 36px;
+      opacity: 0.85;
+    }
+
+    .card-body {
+      padding: 1rem 1.1rem 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .tag-wtok { background: #fdf0e8; color: #8b3a0f; }
+    .tag-news15 { background: #e8edf8; color: #1e3a6e; }
+    .tag-otj { background: #f0f7ee; color: #2d6a20; }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: #666;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    .card-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: #1a1a1a;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-link:hover { opacity: 0.6; }
+
+    @media (max-width: 860px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-reel { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      nav { padding: 1.25rem; }
+      main { padding: 2.5rem 1.25rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      footer { padding: 1.25rem; }
+    }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 11px; color: #aaa; }
+    .footer-links a:hover { color: #666; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Candace Barnette</a>
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a href="#">
+          Work
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/work/case-studies.html">Case studies</a>
+          <a href="/work/blogs.html">Blogs</a>
+          <a href="/work/newsletters.html">Newsletters</a>
+          <a href="/work/articles.html">Articles</a>
+          <hr />
+          <a href="/work/brand-video.html">Brand video</a>
+          <a href="/work/digital-programming.html">Digital programming</a>
+          <a href="/work/news-packages.html">News packages</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          About
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="/about/bio.html">Bio</a>
+          <a href="/about/resume.html">Resume</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>News packages</h1>
+      <p>Reporting, anchoring, and field packages from WTOK-TV in Meridian, MS and KLAF-TV / KADN-TV News 15 in Lafayette, LA.</p>
+    </div>
+
+    <!-- ANCHOR REEL -->
+    <a class="featured-reel" href="https://www.youtube.com/watch?v=QXsM1zi2Rv4&t=35s" target="_blank" rel="noopener">
+      <div class="reel-image-wrap">
+        <img src="https://i.ytimg.com/vi/QXsM1zi2Rv4/maxresdefault.jpg" alt="Anchor reel" />
+        <div class="reel-play">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="32" fill="white" fill-opacity="0.85"/>
+            <path d="M26 20L46 32L26 44V20Z" fill="#1a1a1a"/>
+          </svg>
+        </div>
+      </div>
+      <div class="reel-content">
+        <h2>Anchor Reel</h2>
+        <p>A compilation of anchoring, field reporting, and storytelling from nearly a decade in local news — covering breaking news, investigations, features, and everything in between.</p>
+        <span class="reel-link">Watch reel →</span>
+      </div>
+    </a>
+
+    <!-- SECTION 1: WTOK -->
+    <div class="section">
+      <div class="section-header">
+        <h2>WTOK-TV</h2>
+        <p>Meridian, MS — includes the On the Job series, a recurring segment spotlighting local workers</p>
+      </div>
+      <div class="card-grid">
+
+        <a class="card" href="https://www.wtok.com/content/news/Fighting-for-Civil-Rights-FBI-in-Mississippi-402540576.html" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/SKDQQXZZSFKTRCIODVOVMMMWWU.jpg?auth=79b7d06c3d7c374309e472871d230fbeb4b5321ce031e54392d873af5ccf31fe&width=1200&height=600&smart=true" alt="Fighting for Civil Rights: FBI in Mississippi" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-wtok">WTOK-TV</span></div>
+            <p class="card-title">Fighting for Civil Rights: FBI in Mississippi</p>
+            <p class="card-desc">An in-depth look at the FBI's ongoing civil rights cases in Mississippi, revisiting unresolved injustices decades after the movement.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.wtok.com/content/news/Investigators-family-members-speak-on-quadruple-homicide-414421603.html" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/VDUTN4VTX5JX7BDTNOSAXB2T3A.jpg?auth=fcd06b5a430c8d3b9022feb29a54664e9b82347731621ad95b44b3dcbc6d90df&width=1200&height=600&smart=true" alt="Investigators, family members speak on quadruple homicide" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-wtok">WTOK-TV</span></div>
+            <p class="card-title">Investigators, family members speak on quadruple homicide</p>
+            <p class="card-desc">Investigators and grieving family members speak out in the wake of a quadruple homicide, as the community searches for answers.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.wtok.com/content/news/Never-been-so-afraid-eyewitness-account-of-storm-479781403.html" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/LHAHHQRQJBIFXBHZZQEEMIEFQQ.jpg?auth=a112b6edd54864ffb125e7ac0d21033b062f4f5953e17f0df48b72b9d0bd4f0e&width=1200&height=600&smart=true" alt="Never been so afraid: eyewitness account of storm" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-wtok">WTOK-TV</span></div>
+            <p class="card-title">"Never been so afraid": eyewitness account of storm</p>
+            <p class="card-desc">A survivor's firsthand account of living through a severe storm — raw, emotional, and told in their own words.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.wtok.com/content/news/Volunteers-pour-in-to-help-Columbus-rebuild-506570381.html" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/DZPTS64J2RI5VN75E2U4DV45Z4.jpg?auth=e264da2951cd9f1a06ce86741155837495a6eb97f0a69201ae4caa567ab65e49&width=1200&height=600&smart=true" alt="Volunteers pour in to help Columbus rebuild" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-wtok">WTOK-TV</span></div>
+            <p class="card-title">Volunteers pour in to help Columbus rebuild</p>
+            <p class="card-desc">After disaster strikes Columbus, the community responds — volunteers from across the region arriving to help neighbors rebuild.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.wtok.com/content/news/Anderson-therapy-dog-bringing-smiles-to-patients-505913451.html" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/TOXBBQJGHRKKVMEYV3YMAOPIH4.jpg?auth=e3b19df336b2bb41b456ca36d7e82d839ea19443237ed06f5292c0cad4d5b4a8&width=1200&height=600&smart=true" alt="Anderson therapy dog bringing smiles to patients" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-wtok">WTOK-TV</span></div>
+            <p class="card-title">Anderson therapy dog bringing smiles to patients</p>
+            <p class="card-desc">A therapy dog making the rounds at a local hospital — and the joy it brings to patients who need it most.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.wtok.com/content/news/On-the-Job-Operation-490387881.html" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/J3RQER2ZSNIZDJAG326VWABXUU.jpg?auth=d0afeea14117488f70311c1b7c9c6ff9e29892f1468e18611c30c498b23ae543&width=1200&height=600&smart=true" alt="On the Job: Operation" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-wtok">WTOK-TV</span><span class="tag tag-otj">On the Job</span></div>
+            <p class="card-title">On the Job: Operation</p>
+            <p class="card-desc">Scrubbing in for a day in the operating room — one of the most high-stakes installments of the On the Job series.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.wtok.com/content/news/On-the-Job-Skys-the-limit-491484241.html" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/C6IOMTXRSBMI5M3EOQF246W6IA.jpg?auth=be09f473a6428c86a8a96f0d3781c9d5cb99684a82b7305e2630ea1e6752ec37&width=1200&height=600&smart=true" alt="On the Job: Sky's the limit" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-wtok">WTOK-TV</span><span class="tag tag-otj">On the Job</span></div>
+            <p class="card-title">On the Job: Sky's the limit</p>
+            <p class="card-desc">Taking to the skies for a day with local aviators — an On the Job segment with a view unlike any other.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.wtok.com/content/news/On-the-Job-Caring-for-wild-critters-484772201.html" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/VJZFJC76NBOQNARC24ZTNKXUCU.jpg?auth=7127df66f9fc846b9694e30dc407a41472f9af87b2d57c5977aa8f669b1d5f4f&width=1200&height=600&smart=true" alt="On the Job: Caring for wild critters" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-wtok">WTOK-TV</span><span class="tag tag-otj">On the Job</span></div>
+            <p class="card-title">On the Job: Caring for wild critters</p>
+            <p class="card-desc">A day with wildlife rehabilitators caring for injured and orphaned animals — equal parts tender and unpredictable.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.wtok.com/content/news/On-the-Job-Whats-the-buzz-481556731.html" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://gray-wtok-prod.gtv-cdn.com/resizer/v2/QE53DLPLYBKWLF6GJROJCAVJPA.jpg?auth=ec6b0579ea81fad26145dfec8b01159f3ca88660d97343f8f82dabf27e06e0f5&width=1200&height=600&smart=true" alt="On the Job: What's the buzz?" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-wtok">WTOK-TV</span><span class="tag tag-otj">On the Job</span></div>
+            <p class="card-title">On the Job: What's the buzz?</p>
+            <p class="card-desc">Suiting up to spend a day with a beekeeper — managing hives, harvesting honey, and learning not to flinch.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- SECTION 2: NEWS 15 -->
+    <div class="section">
+      <div class="section-header">
+        <h2>KLAF-TV / KADN-TV News 15</h2>
+        <p>Lafayette, LA</p>
+      </div>
+      <div class="card-grid">
+
+        <a class="card" href="https://www.youtube.com/watch?v=6e9VnQgYbKc" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://i.ytimg.com/vi/6e9VnQgYbKc/hqdefault.jpg" alt="Campaign Cash: The Cost of Winning an Election" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-news15">News 15</span></div>
+            <p class="card-title">Campaign Cash: The Cost of Winning an Election</p>
+            <p class="card-desc">An investigation into the rising cost of local political campaigns — and what it actually takes to win office in Louisiana.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=W0ZhfssGULk" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://i.ytimg.com/vi/W0ZhfssGULk/maxresdefault.jpg" alt="King Cakes in Acadiana: History and Evolution" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-news15">News 15</span></div>
+            <p class="card-title">King Cakes in Acadiana: History and Evolution</p>
+            <p class="card-desc">The history and evolution of king cakes in Louisiana's Acadiana region — a beloved Mardi Gras tradition told through the people who make them.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=Woi9O9eRZW8" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://i.ytimg.com/vi/Woi9O9eRZW8/hqdefault.jpg" alt="Learning Outside the Classroom" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-news15">News 15</span></div>
+            <p class="card-title">Learning Outside the Classroom</p>
+            <p class="card-desc">Students stepping outside traditional school walls for hands-on learning — and the educators rethinking how education works.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=qyeX9FNNk5w" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://i.ytimg.com/vi/qyeX9FNNk5w/hqdefault.jpg" alt="Mike Pence Visits Burned Church" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-news15">News 15</span></div>
+            <p class="card-title">Mike Pence visits burned church</p>
+            <p class="card-desc">Coverage of then-Vice President Mike Pence's visit to a Louisiana church destroyed by fire, as the community processed loss and began rebuilding.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=s2c5TM8yLxs" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://i.ytimg.com/vi/s2c5TM8yLxs/hqdefault.jpg" alt="President Trump visits Cameron LNG" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-news15">News 15</span></div>
+            <p class="card-title">President Trump visits Cameron LNG</p>
+            <p class="card-desc">On-the-ground coverage of President Trump's visit to the Cameron LNG export facility in southwest Louisiana.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+        <a class="card" href="https://www.youtube.com/watch?v=9FgnMxHiSe4" target="_blank" rel="noopener">
+          <div class="card-image-wrap">
+            <img class="card-image" src="https://i.ytimg.com/vi/9FgnMxHiSe4/hqdefault.jpg" alt="Tee Cotton Bowl History" />
+            <div class="play-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.8"/>
+                <path d="M19 14L35 24L19 34V14Z" fill="#1a1a1a"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-news15">News 15</span></div>
+            <p class="card-title">Tee Cotton Bowl history</p>
+            <p class="card-desc">A look back at the history of the Tee Cotton Bowl — a beloved Louisiana football tradition and the stories behind it.</p>
+            <span class="card-link">Watch package →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span class="footer-name">Candace Barnette</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/candacebarnette" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:candacebarnette@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
