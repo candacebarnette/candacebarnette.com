@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Articles — Candace Barnette</title>
+  <title>Newsletters — Candace Barnette</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -97,9 +97,7 @@
       width: 100%;
     }
 
-    .page-header {
-      margin-bottom: 3rem;
-    }
+    .page-header { margin-bottom: 3rem; }
 
     .page-header h1 {
       font-family: 'Playfair Display', serif;
@@ -115,6 +113,30 @@
       font-weight: 300;
       max-width: 520px;
       line-height: 1.7;
+    }
+
+    /* SECTIONS */
+    .section { margin-bottom: 4rem; }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .section-header h2 {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a1a;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .section-header p {
+      font-size: 12px;
+      color: #aaa;
+      font-weight: 300;
+      margin-top: 0.25rem;
     }
 
     /* GRID */
@@ -138,12 +160,12 @@
 
     .card-image {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 180px;
       object-fit: cover;
-      object-position: top;
+      object-position: top center;
       display: block;
       background: #f4f4f4;
-    }
+}
 
     .card-body {
       padding: 1rem 1.1rem 1.2rem;
@@ -168,7 +190,11 @@
       font-weight: 500;
     }
 
-    .tag-gmn { background: #e8eef5; color: #1a3a5c; }
+    .tag-shipstation { background: #e6f0fb; color: #185fa5; }
+    .tag-stamps { background: #e6f5ee; color: #0f6e56; }
+    .tag-metapack { background: #f0eafe; color: #534ab7; }
+    .tag-spi { background: #f0ece4; color: #6b5a3e; }
+    .tag-upbeat { background: #fef9e6; color: #9a7c0a; }
 
     .card-title {
       font-size: 14px;
@@ -269,133 +295,193 @@
 
   <main>
     <div class="page-header">
-      <h1>Articles</h1>
-      <p>News articles written for Government Market News, a publication of Strategic Partnerships, Inc. covering federal policy, infrastructure investment, and the government contracting marketplace.</p>
+      <h1>Newsletters</h1>
+      <p>Newsletters written and managed across brand, B2B, and independent publishing — covering ecommerce, government contracting, and good news.</p>
     </div>
 
-    <div class="card-grid">
+    <!-- SECTION 1: AUCTANE -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Auctane</h2>
+        <p>ShipStation, Stamps.com, and Metapack</p>
+      </div>
+      <div class="card-grid">
 
-      <a class="card" href="https://govmarketnews.com/massdot-service-plaza-procurement-p3-rebid/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/03/1280px-Route_28_in_Somerville_April_2025_2.jpg" alt="Massachusetts highway service plazas" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">MassDOT launches new bidding process for highway service plazas</p>
-          <p class="card-desc">After a failed procurement and a $1B legal dispute, MassDOT restructures its approach to redeveloping 18 service plazas across the state.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
+        <a class="card" href="/assets/newsletter-ss-innovation-delivered.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-ss-innovation-delivered.png" alt="ShipStation Innovation Delivered" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">Innovation Delivered</p>
+            <p class="card-desc">Virtual summit preview covering AI-powered shipping, automation playbooks, and expert-led sessions for ecommerce operators.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
 
-      <a class="card" href="https://govmarketnews.com/texas-swift-program-address-record-demand-for-water-funding/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/05/pexels-steve-861414-1-scaled.jpg" alt="Texas water funding" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">Unprecedented demand for water funding outpaces Texas' flagship program for first time</p>
-          <p class="card-desc">$4.2B in requests, $1.28B available — and for the first time in 11 years, Texas' flagship water finance fund had to turn applicants away.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
+        <a class="card" href="/assets/newsletter-ss-feb-2026.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-ss-feb-2026.png" alt="ShipStation February 2026" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">Your February shipping toolkit just got an upgrade</p>
+            <p class="card-desc">Product updates covering Shopify catalog imports, EU shipping rules, and seller stories from Spiceology and Stickers4Walls.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
 
-      <a class="card" href="https://govmarketnews.com/smart-traffic-technology-gains-momentum-in-u-s-cities/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/09/us-cities-smart-traffic-technology-scaled.jpg" alt="Smart traffic technology in U.S. cities" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">Smart traffic technology gains momentum in U.S. cities</p>
-          <p class="card-desc">Cities from San Jose to Las Vegas are deploying AI-powered traffic systems to cut pedestrian deaths — but costs, privacy concerns, and equity questions are shaping how fast the technology spreads.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
+        <a class="card" href="/assets/newsletter-ss-mar-2026.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-ss-mar-2026.png" alt="ShipStation March 2026" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">An exclusive first look at our 2026 roadmap</p>
+            <p class="card-desc">Behind-the-scenes Q2 product roadmap with CPO Kelly Vincent, the 2026 Ecommerce Delivery Benchmark Report, and stories from Selkirk and SalesFlex.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
 
-      <a class="card" href="https://govmarketnews.com/epa-rescinds-2009-endangerment-finding-clean-air-act-regulation/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/02/pexels-pixabay-210182-scaled.jpg" alt="EPA greenhouse gas ruling" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">White House, EPA finalize repeal of greenhouse gas endangerment finding</p>
-          <p class="card-desc">The EPA's 2009 finding — the legal foundation for federal greenhouse gas regulation for 15+ years — is repealed in what officials call the agency's largest-ever deregulatory action.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
+        <a class="card" href="/assets/newsletter-ss-apr-2026.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-ss-apr-2026.png" alt="ShipStation April 2026" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-shipstation">ShipStation</span></div>
+            <p class="card-title">USPS rates are changing—here's how to save</p>
+            <p class="card-desc">Rate change breakdown, UPS Ground Saver launch, ShipStation Supplies Store, and a featured story from Xena Workwear.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
 
-      <a class="card" href="https://govmarketnews.com/white-house-us-cybersecurity-strategy-2026/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/03/white-house-cyber-security-strategy-scaled.jpg" alt="White House cybersecurity strategy" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">White House outlines cybersecurity priorities for government and industry</p>
-          <p class="card-desc">A six-pillar strategy to modernize federal networks, confront foreign threats, and build a pipeline of cybersecurity talent across government and the private sector.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
+        <a class="card" href="/assets/newsletter-mp-tdc-2026.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-mp-tdc-2026.png" alt="Metapack TDC 2026" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-metapack">Metapack</span></div>
+            <p class="card-title">The Delivery Conference 2026</p>
+            <p class="card-desc">Conference announcement covering the Intelligent Delivery Shift, Metapack Customer Day, new carrier and platform features, and partner spotlights.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
 
-      <a class="card" href="https://govmarketnews.com/white-house-order-boosts-commercial-space-moon-goals/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/12/pexels-pixabay-2166-scaled.jpg" alt="White House commercial space order" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">White House order boosts commercial space, moon goals</p>
-          <p class="card-desc">A sweeping executive order sets a 2028 moon return target, $50B in new commercial space investment, and plans for lunar nuclear reactors by 2030.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
+        <a class="card" href="/assets/newsletter-mp-feb-2026.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-mp-feb-2026.png" alt="Metapack February 2026" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-metapack">Metapack</span></div>
+            <p class="card-title">February's here—and we've got updates worth your attention</p>
+            <p class="card-desc">Intelligence Hub updates including Ask AI and predictive delivery tools, a TDC 2026 recap, new carrier additions Parxl and Zippd, and EU regulatory updates.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
 
-      <a class="card" href="https://govmarketnews.com/fema-launches-250m-grant-program-for-drone-security/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/01/counter-unmanned-drone-grant-program-scaled.jpg" alt="FEMA drone security grants" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">FEMA launches $250M grant program for drone security</p>
-          <p class="card-desc">Eleven states receive counter-drone funding ahead of the FIFA World Cup — distributed in 25 days, making it FEMA's fastest-ever non-disaster grant program.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
+        <a class="card" href="/assets/newsletter-stamps-jan-2026.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-stamps-jan-2026.png" alt="Stamps.com January 2026" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-stamps">Stamps.com</span></div>
+            <p class="card-title">Save on mailing and shipping in 2026</p>
+            <p class="card-desc">New year kickoff covering expanded carrier access with FedEx, USPS rate changes, a ScanMyPhotos customer feature, and office mailing efficiency tips.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
 
-      <a class="card" href="https://govmarketnews.com/genesis-mission-320m-ai-funding/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/12/doe-genesis-mission-ai-supercomputing.jpg" alt="DOE AI Genesis Mission" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">DOE invests $320M for AI scientific research</p>
-          <p class="card-desc">The DOE's Genesis Mission channels $320M into AI-powered national labs, a new American Science Cloud, and robotics — with a goal of doubling U.S. scientific output in a decade.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
+        <a class="card" href="/assets/newsletter-stamps-feb-2026.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-stamps-feb-2026.png" alt="Stamps.com February 2026" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-stamps">Stamps.com</span></div>
+            <p class="card-title">Is your business working for you? Take the quiz.</p>
+            <p class="card-desc">10-question business efficiency quiz, a label printer buying guide, expense tracking tips, and attorney James Rose's story of reclaiming 15 hours a month.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
 
-      <a class="card" href="https://govmarketnews.com/white-house-establishes-plan-leadership-for-proposed-nationwide-missile-defense-system/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/07/earth-at-night-america.jpg" alt="Nationwide missile defense system" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">White House establishes plan, leadership for proposed nationwide missile defense system</p>
-          <p class="card-desc">The administration moves forward on its Iron Dome–style missile defense proposal, naming leadership and outlining a planning structure for a system designed to protect the entire continental U.S.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
+        <a class="card" href="/assets/newsletter-stamps-apr-2026.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-stamps-apr-2026.png" alt="Stamps.com April 2026" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-stamps">Stamps.com</span></div>
+            <p class="card-title">USPS rates are changing—here's how to save</p>
+            <p class="card-desc">April rate change breakdown, critical mail workflow guide, legal professional Q&A, and Foresight Tax Services — a customer that's been with Stamps.com for 23 seasons.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
 
-      <a class="card" href="https://govmarketnews.com/north-carolina-first-in-opportunity-plan/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2026/05/pexels-andres-nino-760836985-18802845-scaled.jpg" alt="North Carolina statewide development plan" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">New priorities, projects highlight North Carolina's statewide development plan</p>
-          <p class="card-desc">NC's economic blueprint sets priorities through 2030 across infrastructure, housing, workforce, and emerging tech — with $200B in investment needs on the horizon.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
-
-      <a class="card" href="https://govmarketnews.com/doe-rare-earth-funding-opportunity/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/12/pexels-pixabay-461789-scaled.jpg" alt="DOE rare earth funding" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">DOE opens funding opportunity to expand domestic rare earth supply chain</p>
-          <p class="card-desc">Federal investment targets rare earth element extraction and processing, part of a broader push to reduce U.S. dependence on foreign sources for critical materials.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
-
-      <a class="card" href="https://govmarketnews.com/dod-plans-massive-cloud-contract-expansion-in-2027/" target="_blank" rel="noopener">
-        <img class="card-image" src="https://govmarketnews.com/wp-content/uploads/2025/08/dod-pentagon-cloud-infrastructure.jpg" alt="DoD cloud contract expansion" />
-        <div class="card-body">
-          <div class="card-tags"><span class="tag tag-gmn">Gov't Market News</span></div>
-          <p class="card-title">DoD plans massive cloud contract expansion in 2027</p>
-          <p class="card-desc">The Pentagon is preparing a significant expansion of its cloud computing procurement, signaling major new contracting opportunities for technology vendors in 2027.</p>
-          <span class="card-link">Read article →</span>
-        </div>
-      </a>
-
+      </div>
     </div>
+
+    <!-- SECTION 2: SPI -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Strategic Partnerships, Inc.</h2>
+        <p>Texas Government Insider and Government Contracting Pipeline</p>
+      </div>
+      <div class="card-grid">
+
+        <a class="card" href="/assets/newsletter-tgi-apr-2025.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-tgi-apr-2025-thumb.png" alt="Texas Government Insider April 2025" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-spi">Texas Government Insider</span></div>
+            <p class="card-title">Many new projects related to health care will launch in 2025 and 2026</p>
+            <p class="card-desc">Coverage of emerging healthcare infrastructure projects across rural and underserved communities, with a look at new state and private investment opportunities.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
+
+        <a class="card" href="/assets/newsletter-pipeline-apr-9-2025.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-pipeline-apr-9-2025-thumb.png" alt="Government Contracting Pipeline April 9 2025" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-spi">Gov't Contracting Pipeline</span></div>
+            <p class="card-title">America confronts urgent water infrastructure needs</p>
+            <p class="card-desc">Roundup of water infrastructure projects launching nationwide, from wastewater plant expansions to creek restoration — plus available federal funding sources.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
+
+        <a class="card" href="/assets/newsletter-pipeline-apr-16-2025.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-pipeline-apr-16-2025-thumb.png" alt="Government Contracting Pipeline April 16 2025" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-spi">Gov't Contracting Pipeline</span></div>
+            <p class="card-title">Funding support for public projects is showing no slowdown</p>
+            <p class="card-desc">Analysis of public project funding trends under the current administration, with new opportunities in parks, libraries, and community infrastructure.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- SECTION 3: INDEPENDENT -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Independent</h2>
+        <p>Upbeat — a weekly good news newsletter on Substack</p>
+      </div>
+      <div class="card-grid">
+
+        <a class="card" href="/assets/newsletter-upbeat-1.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-upbeat-1.png" alt="Upbeat newsletter" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-upbeat">Upbeat</span></div>
+            <p class="card-title">This Week's Good News: From Unhinged Children's Shows to Waymo Love Notes</p>
+            <p class="card-desc">Weekly roundup of stories that cut through the noise — Gabba Rave at Coachella, elephant emergency drills, and why Waymo riders are leaving thank-you notes.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
+
+        <a class="card" href="/assets/newsletter-upbeat-2.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-upbeat-2.png" alt="Upbeat newsletter" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-upbeat">Upbeat</span></div>
+            <p class="card-title">Vultures have been hoarding medieval treasure for 650 years (seriously)</p>
+            <p class="card-desc">This week: rescue dogs riding shotgun with volunteers, a Guinness record attempt, solar energy hitting a milestone, and one very surprising medieval bird.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
+
+        <a class="card" href="/assets/newsletter-upbeat-3.png" target="_blank" rel="noopener">
+          <img class="card-image" src="/assets/newsletter-upbeat-3.png" alt="Upbeat newsletter" />
+          <div class="card-body">
+            <div class="card-tags"><span class="tag tag-upbeat">Upbeat</span></div>
+            <p class="card-title">This Week's Good News: From Newfound Colors to Poverty-Breaking Bicycles</p>
+            <p class="card-desc">A newly discovered color, a mom and daughter moment at a book signing, Chattanooga's national park glow-up, and bicycles changing lives in Chicago.</p>
+            <span class="card-link">View newsletter →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
   </main>
 
   <footer>
