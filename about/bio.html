@@ -124,6 +124,27 @@
       font-style: italic;
     }
 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .bio-content h1,
+    .bio-subtitle,
+    .bio-content p,
+    .resume-link {
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .bio-content h1       { animation-delay: 0.05s; }
+    .bio-subtitle         { animation-delay: 0.2s; }
+    .bio-content p:nth-of-type(2) { animation-delay: 0.35s; }
+    .bio-content p:nth-of-type(3) { animation-delay: 0.5s; }
+    .bio-content p:nth-of-type(4) { animation-delay: 0.65s; }
+    .bio-content p:nth-of-type(5) { animation-delay: 0.8s; }
+    .resume-link          { animation-delay: 0.95s; }
+
     /* BIO TEXT */
     .bio-content h1 {
       font-family: 'Playfair Display', serif;
@@ -198,11 +219,28 @@
     .footer-links a { font-size: 11px; color: #aaa; }
     .footer-links a:hover { color: #666; }
 
+    .bio-extras { display: none; }
+
     @media (max-width: 640px) {
       nav { padding: 1.25rem; }
       main { padding: 2.5rem 1.25rem; }
-      .bio-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .bio-photo { max-width: 180px; aspect-ratio: 1 / 1; }
+      .bio-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .bio-photo { max-width: 110px; aspect-ratio: 1 / 1; }
+      .bio-photo-extra { display: none; }
+      .bio-extras {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+      .bio-extras .bio-photo-secondary {
+        width: 100%;
+        max-width: none;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+      }
       footer { padding: 1.25rem; }
     }
   </style>
@@ -248,12 +286,18 @@
     <div class="bio-grid">
 
       <div class="bio-photos">
-        <img src="/assets/candace-headshot.jpg" alt="Candace Barnette" class="bio-photo" />
-        <p class="photo-caption">Austin, TX. Probably thinking about content.</p>
-        <img src="/assets/candace-stump.jpg" alt="Candace on a stump with a camera" class="bio-photo-secondary" style="object-position: center 15%;" />
-        <p class="photo-caption">Getting the shot. Whatever it takes.</p>
-        <img src="/assets/candace-minou.jpg" alt="Minou the cat" class="bio-photo-secondary" />
-        <p class="photo-caption">Minou. Unbothered.</p>
+        <div class="bio-photo-wrap">
+          <img src="/assets/candace-headshot.jpg" alt="Candace Barnette" class="bio-photo" />
+          <p class="photo-caption">Austin, TX. Probably thinking about content.</p>
+        </div>
+        <div class="bio-photo-wrap bio-photo-extra">
+          <img src="/assets/candace-stump.jpg" alt="Candace on a stump with a camera" class="bio-photo-secondary" style="object-position: center 15%;" />
+          <p class="photo-caption">Getting the shot. Whatever it takes.</p>
+        </div>
+        <div class="bio-photo-wrap bio-photo-extra">
+          <img src="/assets/candace-minou.jpg" alt="Minou the cat" class="bio-photo-secondary" />
+          <p class="photo-caption">Minou. Unbothered.</p>
+        </div>
       </div>
 
       <div class="bio-content">
@@ -269,6 +313,17 @@
         <p>Mississippi-born, Austin-based. Outside of work I have an <a href="https://etsy.com/shop/bandacecreations" target="_blank" rel="noopener">Etsy shop for my stickers</a>, and I share my home with Minou (pictured). I love a good ren faire, paddleboarding on the river, tie-dyeing things that probably didn't need to be tie-dyed, and convincing myself I can handle whatever overly complicated home project I found online.</p>
 
         <a href="/about/resume.html" class="resume-link">View my resume →</a>
+
+        <div class="bio-extras">
+          <div>
+            <img src="/assets/candace-stump.jpg" alt="Candace on a stump with a camera" class="bio-photo-secondary" style="object-position: center 15%;" />
+            <p class="photo-caption">Getting the shot. Whatever it takes.</p>
+          </div>
+          <div>
+            <img src="/assets/candace-minou.jpg" alt="Minou the cat" class="bio-photo-secondary" />
+            <p class="photo-caption">Minou. Unbothered.</p>
+          </div>
+        </div>
       </div>
 
     </div>
